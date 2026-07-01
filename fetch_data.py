@@ -15,13 +15,14 @@ def get_data(limit=500, interval='1d'):
     data = response.json()
     
     # Binance returns data in a specific list format
-    columns = [
-        'open_time', 'open', 'high', 'low', 'close', 'volume', 
-        'close_time', 'quote_asset_volume', 'number_of_trades', 
-        'taker_buy_base_asset_volume', 'taker_buy_quote_asset_volume', 'ignore'
-    ]
-    
-    df = pd.DataFrame(data, columns=columns)
+ # Ensure columns match what your indicators.py expects
+columns = [
+    'open_time', 'open', 'high', 'low', 'close', 'volume', 
+    'close_time', 'quote_asset_volume', 'number_of_trades', 
+    'taker_buy_base_asset_volume', 'taker_buy_quote_asset_volume', 'ignore'
+]
+df = pd.DataFrame(data, columns=columns)
+# Now df['close'] exists!
     
     # Clean and format the data
     df['close'] = df['close'].astype(float)
