@@ -2,7 +2,6 @@ import sys
 import os
 import streamlit as st
 sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), 'src')))
-
 from fetch_data import get_data
 from indicators import add_indicators
 from backtester import backtest_strategy
