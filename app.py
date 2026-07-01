@@ -9,7 +9,14 @@ from backtester import backtest_strategy
 
 st.title("🚀 BTC Signal Dashboard")
 
+# app.py
 df = get_data(limit=500)
+
+if df.empty:
+    st.error("Error: Failed to fetch data. The DataFrame is empty.")
+    st.stop() # This stops the app execution here so it doesn't crash on indicators
+
+df = add_indicators(df)
 st.write("Data fetched:", len(df))
 
 df = add_indicators(df)
