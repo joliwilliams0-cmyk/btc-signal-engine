@@ -1,7 +1,10 @@
-import streamlit as st
-from src.fetch_data import get_data
-from src.indicators import add_indicators
-from src.backtester import backtest_strategy
+import sys
+import os
+sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), 'src')))
+
+from fetch_data import get_data
+from indicators import add_indicators
+from backtester import backtest_strategy
 
 st.title("🚀 BTC Signal Dashboard")
 
