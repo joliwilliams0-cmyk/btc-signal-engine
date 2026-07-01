@@ -9,13 +9,14 @@ from backtester import backtest_strategy
 
 st.title("🚀 BTC Signal Dashboard")
 
-# Fetch and process data
 df = get_data(limit=500)
+st.write("Data fetched:", len(df))
+
 df = add_indicators(df)
+st.write("Data after indicators:", len(df))
 
-# Run backtest
 win_rate, df_results = backtest_strategy(df)
-
+st.write("Results after backtest:", len(df_results))
 # Display on the Dashboard
 st.metric("Historical Strategy Return", f"{win_rate:.2%}")
 st.line_chart(df_results["close"])
