@@ -1,16 +1,16 @@
 import requests
 import pandas as pd
 
+# In fetch_data.py
 def get_data(limit=500, interval='1d'):
-    """
-    Fetches OHLCV data from Binance public API.
-    """
-    symbol = 'BTCUSDT'
-    url = f'https://api.binance.com/api/v3/klines?symbol={symbol}&interval={interval}&limit={limit}'
-    
+    url = f'https://api.binance.com/api/v3/klines?symbol=BTCUSDT&interval={interval}&limit={limit}'
     response = requests.get(url)
+    
     if response.status_code != 200:
-        return pd.DataFrame() # Return empty if request fails
+        print(f"API Error: {response.status_code} - {response.text}") # Look at this in your logs
+        return pd.DataFrame()
+    
+    # ... rest of your code
     
     data = response.json()
     
